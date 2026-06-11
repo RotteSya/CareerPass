@@ -9,15 +9,30 @@ const onScroll = () => nav.toggleAttribute('data-scrolled', scrollY > 30);
 addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
-/* ── reveal on scroll ───────────────────────────────── */
+/* ── reveal on scroll ───────────────────────────────────
+   IO is the happy path; a rect check at init + on scroll is the
+   safety net (IO delivery can stall in background/embedded views). */
+const pending = new Set(document.querySelectorAll('.reveal'));
+const show = (el) => { el.classList.add('is-in'); pending.delete(el); io.unobserve(el); };
+const inView = (el) => {
+  const r = el.getBoundingClientRect();
+  return r.top < innerHeight * .93 && r.bottom > 0;
+};
 const io = new IntersectionObserver((entries) => {
-  for (const e of entries) {
-    if (!e.isIntersecting) continue;
-    e.target.classList.add('is-in');
-    io.unobserve(e.target);
-  }
+  for (const e of entries) if (e.isIntersecting) show(e.target);
 }, { threshold: .12, rootMargin: '0px 0px -7% 0px' });
-document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+for (const el of [...pending]) (inView(el) ? show(el) : io.observe(el));
+
+let sweeping = false;
+addEventListener('scroll', () => {
+  if (sweeping || !pending.size) return;
+  sweeping = true;
+  requestAnimationFrame(() => {
+    for (const el of [...pending]) if (inView(el)) show(el);
+    sweeping = false;
+  });
+}, { passive: true });
 
 /* ── aurora follows the pointer, lazily ─────────────── */
 if (!reduced) {

@@ -17,10 +17,14 @@ export function initPhone() {
 
   let visible = false;
   let running = false;
+  const maybeStart = () => { if (visible && !running) loop(); };
   new IntersectionObserver((entries) => {
     visible = entries[0].isIntersecting;
-    if (visible && !running) loop();
+    maybeStart();
   }, { threshold: .25 }).observe(chat);
+  // IO delivery can stall in embedded views — kick off if already on screen
+  const r = chat.getBoundingClientRect();
+  if (r.top < innerHeight && r.bottom > 0) { visible = true; maybeStart(); }
 
   async function loop() {
     running = true;

@@ -49,7 +49,7 @@ export function createApp({ onError = console.error } = {}) {
         await r.handler(req, res);
         return;
       }
-      if ((req.method === 'GET' || req.method === 'HEAD') && serveStatic(path, res)) return;
+      if ((req.method === 'GET' || req.method === 'HEAD') && serveStatic(path, res, req)) return;
       json(res, 404, { error: 'not_found' });
     } catch (err) {
       onError(err);
@@ -58,18 +58,27 @@ export function createApp({ onError = console.error } = {}) {
     }
   }
 
-  function serveStatic(path, res) {
+  function serveStatic(path, res, req) {
     for (const { prefix, dir } of mounts) {
       if (!path.startsWith(prefix)) continue;
       let rel = path.slice(prefix.length) || 'index.html';
       if (rel.endsWith('/')) rel += 'index.html';
       const file = normalize(join(dir, rel));
       if (!file.startsWith(dir + sep) && file !== dir) continue; // path traversal guard
-      if (!existsSync(file) || !statSync(file).isFile()) continue;
-      const ext = extname(file);
+      if (!existsSync(file)) continue;
+      const stat = statSync(file);
+      if (!stat.isFile()) continue;
+      // Unhashed asset URLs: always revalidate (cheap 304s via Last-Modified).
+      const modified = stat.mtime.toUTCString();
+      if (req?.headers['if-modified-since'] === modified) {
+        res.writeHead(304, { 'cache-control': 'no-cache', 'last-modified': modified });
+        res.end();
+        return true;
+      }
       res.writeHead(200, {
-        'content-type': MIME[ext] || 'application/octet-stream',
-        'cache-control': ext === '.html' ? 'no-cache' : 'public, max-age=3600',
+        'content-type': MIME[extname(file)] || 'application/octet-stream',
+        'cache-control': 'no-cache',
+        'last-modified': modified,
       });
       createReadStream(file).pipe(res);
       return true;
