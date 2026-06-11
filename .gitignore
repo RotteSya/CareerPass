@@ -1,0 +1,12 @@
+# dependencies (local only — remove with `rm -rf node_modules`)
+node_modules/
+
+# runtime data (sqlite db, caches)
+data/
+
+# secrets
+.env
+
+# os / editor noise
+.DS_Store
+*.log
