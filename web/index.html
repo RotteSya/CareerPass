@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GooJob — しずかな、就活。</title>
+  <meta name="description" content="説明会も、面接も、企業研究も。メールの山から大事なことだけを見つけて、ちょうどいいときに、TelegramやLINEでそっと知らせる。新卒のための、自動化された就活体験。">
+  <meta name="theme-color" content="#F6F5F1">
+  <meta property="og:title" content="GooJob — しずかな、就活。">
+  <meta property="og:description" content="メールを読んで、予定を見つけて、企業を調べて、ちょうどいいときに知らせる。ぜんぶ、自動で。">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="preload" href="/assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/instrument-serif-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true">
+  <i class="a a1"></i><i class="a a2"></i><i class="a a3"></i><i class="a a4"></i>
+</div>
+
+<header class="nav glass" id="nav">
+  <a class="brand" href="#top" aria-label="GooJob">
+    <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="32" cy="32" r="21" fill="none" stroke="currentColor" stroke-width="5.5"/>
+      <circle cx="32" cy="32" r="7.5" fill="var(--accent)"/>
+    </svg>
+    GooJob
+  </a>
+  <nav class="nav-links" aria-label="ページ内">
+    <a href="#how">しくみ</a>
+    <a href="#features">できること</a>
+    <a href="#faq">よくある質問</a>
+  </nav>
+  <a class="btn btn-ink btn-s" href="#register">はじめる</a>
+</header>
+
+<main id="top">
+
+  <!-- ━━ hero ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="hero">
+    <p class="tate" aria-hidden="true">就活の騒がしさを、ゼロへ。</p>
+
+    <div class="hero-copy">
+      <p class="eyebrow reveal">for shūkatsu <span class="dot">·</span> 27卒 / 28卒</p>
+      <h1 class="hero-title">
+        <span class="line"><span class="line-in">しずかな、</span></span>
+        <span class="line"><span class="line-in">就活<span class="accent-dot">。</span></span></span>
+      </h1>
+      <p class="hero-sub reveal">
+        説明会も、面接も、企業研究も。<br>
+        メールの山から大事なことだけを見つけて、<br>
+        ちょうどいいときに、そっと知らせます。
+      </p>
+      <div class="hero-cta reveal">
+        <a href="#register" class="btn btn-ink magnetic">無料ではじめる</a>
+        <a href="#how" class="btn btn-ghost magnetic">しくみを見る
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <p class="hero-note reveal">メールは読み取り専用 — いつでも解除できます</p>
+    </div>
+
+    <div class="hero-phone reveal">
+      <div class="phone glass-strong" id="phone" aria-label="Botの通知デモ">
+        <div class="phone-island" aria-hidden="true"></div>
+        <div class="phone-head">
+          <span class="phone-avatar" aria-hidden="true">◎</span>
+          <span class="phone-name">GooJob<em>bot</em></span>
+        </div>
+        <div class="phone-chat" id="phoneChat" aria-live="off"></div>
+        <div class="phone-input" aria-hidden="true"><span>メッセージ</span>
+          <svg viewBox="0 0 20 20"><path d="M3 10 17 3l-3.5 14L9.5 11z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <a class="scroll-hint" href="#chaos" aria-label="下へ"><span></span></a>
+  </section>
+
+  <!-- ━━ chaos → calm ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="chaos" id="chaos">
+    <header class="sec-head reveal">
+      <p class="sec-no">問題</p>
+      <h2>就活のメールは、<em class="serif-i">騒がしい</em>。</h2>
+      <p class="sec-sub">説明会の案内、日程調整、ESの締切、そして選考結果——<br>大事な1通は、毎日の数十通に埋もれていく。</p>
+    </header>
+
+    <div class="marquees reveal" aria-hidden="true">
+      <div class="marquee"><div class="marquee-track" data-speed="36"></div></div>
+      <div class="marquee"><div class="marquee-track reverse" data-speed="46"></div></div>
+    </div>
+
+    <p class="calm-bridge serif-jp reveal">GooJob は、その全部を<span class="u">読んでいる</span>。</p>
+
+    <div class="calm-cards">
+      <article class="card glass reveal">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 9.5h17M8 3v3.5M16 3v3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><circle cx="12" cy="14.8" r="1.4" fill="var(--accent)"/></svg>
+        <h3>予定の自動抽出</h3>
+        <p>説明会・面接・締切の日時をメールから正確に。全角も、和暦も、複数の候補日も。</p>
+      </article>
+      <article class="card glass reveal">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h8.5L19 8v12.5H6z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M14 3.5V8h4.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 12h7M9 15.5h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M9 8.5h2.5" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <h3>30秒 企業ブリーフ</h3>
+        <p>応募先を見つけたら、自動で下調べ。事業、直近の動き、想定質問。読むのは要点だけ。</p>
+      </article>
+      <article class="card glass reveal">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a5.5 5.5 0 0 1 5.5 5.5c0 4 1.6 5.4 2 6H4.5c.4-.6 2-2 2-6A5.5 5.5 0 0 1 12 4Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M10 18.8a2 2 0 0 0 4 0" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <h3>ちょうどいい通知</h3>
+        <p>前日と直前に、Telegram か LINE へ。アプリを開きにいく習慣は、もういらない。</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ━━ how ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="how" id="how">
+    <header class="sec-head reveal">
+      <p class="sec-no">しくみ</p>
+      <h2>つないだら、<em class="serif-i">終わり</em>。</h2>
+      <p class="sec-sub">あなたがやることは、最初の1分だけ。</p>
+    </header>
+
+    <ol class="steps">
+      <li class="step reveal">
+        <span class="step-no serif">01</span>
+        <h3>メールをつなぐ</h3>
+        <p>就活用のアドレスを登録して、Botと連携。読み取りは受信トレイだけ、いつでも解除できます。</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-no serif">02</span>
+        <h3>AI が読みとる</h3>
+        <p>説明会・面接・締切を自動で見つけて整理。応募した会社の下調べも、裏で静かに進みます。</p>
+      </li>
+      <li class="step reveal">
+        <span class="step-no serif">03</span>
+        <h3>Bot が知らせる</h3>
+        <p>前日と直前、ブリーフ付きの通知が届く。あなたは目の前の一社に集中するだけ。</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ━━ features ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="features" id="features">
+    <header class="sec-head reveal">
+      <p class="sec-no">できること</p>
+      <h2>細部まで、<em class="serif-i">日本の就活</em>のために。</h2>
+    </header>
+    <div class="feat-grid">
+      <article class="feat glass reveal"><h3>日程候補も見逃さない</h3><p>「ご都合のよい日程を」の打診も検知。回答期限つきでお知らせ。</p></article>
+      <article class="feat glass reveal"><h3>日程変更に追従</h3><p>リスケのメールが来たら、予定もリマインドも自動で引っ越し。</p></article>
+      <article class="feat glass reveal"><h3>お祈りも、しずかに</h3><p>選考結果はそっと一言だけ。気持ちが守られる通知設計。</p></article>
+      <article class="feat glass reveal"><h3>持ち物・服装つき</h3><p>履歴書、スーツ指定、会場の地図リンクまで通知に同梱。</p></article>
+      <article class="feat glass reveal"><h3>ナビサイト経由もOK</h3><p>マイナビ・リクナビなどからのメールも、企業名で正しく整理。</p></article>
+      <article class="feat glass reveal"><h3>読み取り専用</h3><p>メールは読むだけ。認証情報は暗号化保存、ワンタップで解除。</p></article>
+    </div>
+  </section>
+
+  <!-- ━━ register ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="register" id="register">
+    <div class="reg-card glass-strong reveal">
+      <div class="reg-progress" aria-hidden="true"><i id="regBar"></i></div>
+
+      <!-- step 1: email -->
+      <form class="reg-step is-active" data-step="1" id="regForm1" novalidate>
+        <p class="reg-no">1 / 3</p>
+        <h2 class="reg-h">1分で、<em class="serif-i">しずか</em>になる。</h2>
+        <label class="field">
+          <span class="field-label">就活で使っているメールアドレス</span>
+          <input type="email" id="regEmail" name="email" inputmode="email" autocomplete="email" placeholder="taro@example.com" required>
+          <i class="field-line" aria-hidden="true"></i>
+        </label>
+        <p class="field-err" id="regEmailErr" role="alert"></p>
+        <div class="reg-actions">
+          <button class="btn btn-ink magnetic" type="submit">次へ</button>
+        </div>
+      </form>
+
+      <!-- step 2: grad year -->
+      <div class="reg-step" data-step="2">
+        <p class="reg-no">2 / 3</p>
+        <h2 class="reg-h">卒業予定は？</h2>
+        <div class="pills" role="group" aria-label="卒業年度">
+          <button class="pill" data-year="2027">2027年卒</button>
+          <button class="pill" data-year="2028">2028年卒</button>
+          <button class="pill" data-year="2029">2029年卒〜</button>
+        </div>
+        <div class="reg-actions">
+          <button class="btn btn-ghost" data-back>もどる</button>
+        </div>
+      </div>
+
+      <!-- step 3: channel -->
+      <div class="reg-step" data-step="3">
+        <p class="reg-no">3 / 3</p>
+        <h2 class="reg-h">通知は、どこに？</h2>
+        <div class="channels">
+          <button class="channel glass" data-channel="telegram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4 2.8 11.2c-.9.35-.85 1.3.07 1.58l4.63 1.44 1.8 5.5c.27.8 1.05.92 1.6.28l2.4-2.62 4.7 3.45c.7.5 1.5.14 1.7-.74L22.9 5.3c.23-1-.7-1.7-1.9-1.3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m7.5 14.2 9.4-7.4-7.2 8.1-.3 3.2" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" opacity=".55"/></svg>
+            <b>Telegram</b>
+            <span>いますぐ連携できる<br>おすすめ</span>
+          </button>
+          <button class="channel glass" data-channel="line">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c5.25 0 9.5 3.4 9.5 7.6 0 4.2-4.25 7.6-9.5 7.6-.6 0-1.2-.05-1.77-.13-1.5 1.05-3.34 1.84-4.13 1.93.6-1.05.74-1.93.7-2.6C4.06 16.6 2.5 14.06 2.5 11.1c0-4.2 4.25-7.6 9.5-7.6Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.2 9.4v4.2M9.9 13.6V9.4l3 4.2V9.4M16.8 9.4v4.2m-1.9-4.2h0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none" opacity=".55"/></svg>
+            <b>LINE</b>
+            <span>招待制プレビュー<br>準備中</span>
+          </button>
+        </div>
+        <p class="field-err" id="regSubmitErr" role="alert"></p>
+        <div class="reg-actions">
+          <button class="btn btn-ghost" data-back>もどる</button>
+        </div>
+      </div>
+
+      <!-- step 4: done -->
+      <div class="reg-step reg-done" data-step="4">
+        <p class="reg-no done-mark" aria-hidden="true">◎</p>
+        <h2 class="reg-h">あとは、<em class="serif-i">Bot</em> におまかせ。</h2>
+        <p class="done-lead" id="doneLead">Telegramでこのコードを送ると、連携が完了します。</p>
+        <div class="code-chip glass" id="codeChip" role="group" aria-label="連携コード">
+          <span class="code" id="linkCode">------</span>
+          <button class="copy" id="copyBtn" aria-label="コピー">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="7" width="9.5" height="9.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M13 7V5.5A2.5 2.5 0 0 0 10.5 3h-5A2.5 2.5 0 0 0 3 5.5v5A2.5 2.5 0 0 0 5.5 13H7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          </button>
+        </div>
+        <div class="reg-actions done-actions">
+          <a class="btn btn-ink magnetic" id="botLink" href="#" target="_blank" rel="noopener">Telegramで開く</a>
+        </div>
+        <details class="imap-later">
+          <summary>メール連携も今すませる（任意）</summary>
+          <form id="imapForm" novalidate>
+            <p class="imap-hint">Gmailは2段階認証を有効にして「アプリパスワード」を発行してください。読み取り専用・暗号化保存です。</p>
+            <label class="field"><span class="field-label">アプリパスワード</span>
+              <input type="password" id="imapPass" autocomplete="off" placeholder="xxxx xxxx xxxx xxxx">
+              <i class="field-line"></i>
+            </label>
+            <div class="reg-actions"><button class="btn btn-ink btn-s" type="submit">保存する</button><span class="imap-ok" id="imapOk"></span></div>
+          </form>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ━━ faq ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="faq" id="faq">
+    <header class="sec-head reveal">
+      <p class="sec-no">よくある質問</p>
+      <h2>気になることは、<em class="serif-i">先に</em>。</h2>
+    </header>
+    <div class="qa-list reveal">
+      <details class="qa">
+        <summary>メールの中身は安全ですか？<i></i></summary>
+        <div class="qa-body"><p>受信トレイを読み取り専用で確認し、就活に関係するメールだけを解析します。認証情報は暗号化して保存し、解除すればすぐに削除されます。メールの転送や送信は一切行いません。</p></div>
+      </details>
+      <details class="qa">
+        <summary>TelegramとLINE、どちらがいいですか？<i></i></summary>
+        <div class="qa-body"><p>どちらでも使えます。今すぐ試すなら、登録直後に連携できるTelegramが最速です。LINEは招待制プレビューとして順次ご案内しています。</p></div>
+      </details>
+      <details class="qa">
+        <summary>どんなメールを理解できますか？<i></i></summary>
+        <div class="qa-body"><p>説明会・面接・面談の確定/候補/変更、ES・適性検査などの締切、応募受付、選考結果。マイナビ・リクナビなどナビサイト経由のメールにも対応しています。</p></div>
+      </details>
+      <details class="qa">
+        <summary>料金はかかりますか？<i></i></summary>
+        <div class="qa-body"><p>学生向けの基本機能はすべて無料です。就活が終わったら、ワンタップで静かに退会できます。</p></div>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p class="foot-sign serif-jp reveal">準備は、できています。</p>
+  <p class="foot-watermark" aria-hidden="true">GOOJOB</p>
+  <div class="foot-meta">
+    <span>© 2026 GooJob</span>
+    <span>しずかな、就活。</span>
+    <a href="#top">トップへ</a>
+  </div>
+</footer>
+
+<script type="module" src="/assets/js/main.js"></script>
+</body>
+</html>

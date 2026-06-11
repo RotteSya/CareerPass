@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    .ring { stroke: #16161A; }
+    .core { fill: #2B49E8; }
+    @media (prefers-color-scheme: dark) {
+      .ring { stroke: #F6F5F1; }
+      .core { fill: #7B8CFF; }
+    }
+  </style>
+  <circle class="ring" cx="32" cy="32" r="21" fill="none" stroke-width="5.5"/>
+  <circle class="core" cx="32" cy="32" r="7.5"/>
+</svg>

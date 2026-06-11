@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GooJob — 体験デモ</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <style>
+    /* demo-only chrome — the landing stylesheet stays untouched */
+    .demo-main { max-width: var(--w-max); margin: 0 auto; padding: 130px 24px 90px; }
+    .demo-head { max-width: 640px; margin-bottom: 44px; }
+    .demo-head h1 { font-size: clamp(34px, 5vw, 50px); }
+    .demo-head p { margin-top: 14px; color: var(--ink-2); font-size: 14.5px; }
+    .demo-grid { display: grid; grid-template-columns: 1fr 400px; gap: 28px; align-items: start; }
+    .demo-panel { border-radius: var(--r-l); padding: 26px 26px 24px; margin-bottom: 18px; }
+    .demo-panel h2 { font-size: 15px; letter-spacing: .04em; margin-bottom: 16px; }
+    .demo-panel h2 .n { color: var(--accent); font-family: var(--font-serif); margin-right: 6px; }
+
+    .sample { width: 100%; text-align: left; display: grid; gap: 2px;
+      padding: 14px 16px; border-radius: 16px; border: 1px solid var(--hair);
+      background: rgba(255,255,255,.55); margin-bottom: 10px;
+      transition: transform .4s var(--ease-spring), background-color .25s, opacity .3s; }
+    .sample:hover { transform: translateY(-2px); background: #fff; }
+    .sample:active { transform: scale(.985); }
+    .sample b { font-size: 13.5px; }
+    .sample span { font-size: 12px; color: var(--ink-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .sample[data-done] { opacity: .45; pointer-events: none; }
+    .sample[data-done] b::after { content: ' ✓ 受信済み'; color: var(--accent); }
+
+    .ev { display: flex; gap: 12px; align-items: baseline; padding: 11px 2px;
+      border-bottom: 1px solid var(--hair); font-size: 13.5px; }
+    .ev:last-child { border-bottom: 0; }
+    .ev time { font-variant-numeric: tabular-nums; color: var(--accent); font-weight: 600; white-space: nowrap; }
+    .ev .t { font-weight: 600; }
+    .ev .badge { font-size: 10.5px; border: 1px solid var(--hair); border-radius: 99px; padding: 1px 8px; color: var(--ink-2); white-space: nowrap; }
+    .ev-empty { color: var(--ink-3); font-size: 13px; padding: 8px 2px; }
+
+    .demo-reset { margin-top: 14px; font-size: 12.5px; color: var(--ink-3);
+      text-decoration: underline; text-underline-offset: 3px; }
+    .demo-reset:hover { color: var(--warn); }
+
+    .demo-right { position: sticky; top: 90px; }
+    .demo-right .phone { width: 100%; aspect-ratio: 9 / 17; animation: none; transform: none; }
+    .demo-right .phone-chat { height: calc(100% - 146px); overflow-y: auto; scroll-behavior: smooth; }
+    .demo-right .bubble { font-size: 12.3px; }
+    .demo-right .bubble .btnrow { display: grid; gap: 4px; margin-top: 8px; }
+    .demo-right .bubble .chip { font-size: 11.5px; color: var(--accent); border: 1px solid var(--accent-soft);
+      background: var(--accent-soft); border-radius: 9px; padding: 5px 9px; text-align: center; display: block; }
+    .demo-hint { margin-top: 14px; font-size: 12px; color: var(--ink-3); text-align: center; }
+    .live { display: inline-flex; align-items: center; gap: 7px; font-size: 11px; letter-spacing: .18em;
+      color: var(--ink-2); text-transform: uppercase; }
+    .live i { width: 7px; height: 7px; border-radius: 50%; background: #C9C9CF; }
+    .live[data-on] i { background: #34B26B; box-shadow: 0 0 0 4px rgba(52,178,107,.16); }
+
+    @media (max-width: 900px) {
+      .demo-grid { grid-template-columns: 1fr; }
+      .demo-right { position: static; max-width: 380px; margin: 0 auto; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="aurora" aria-hidden="true">
+  <i class="a a1"></i><i class="a a2"></i><i class="a a3"></i><i class="a a4"></i>
+</div>
+
+<header class="nav glass" id="nav">
+  <a class="brand" href="/">
+    <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+      <circle cx="32" cy="32" r="21" fill="none" stroke="currentColor" stroke-width="5.5"/>
+      <circle cx="32" cy="32" r="7.5" fill="var(--accent)"/>
+    </svg>
+    GooJob
+  </a>
+  <span class="live" id="live"><i></i>demo</span>
+</header>
+
+<main class="demo-main">
+  <header class="demo-head">
+    <h1>さわって、<em class="serif-i">わかる</em>。</h1>
+    <p>サンプルの就活メールを「受信」させると、バックエンドが本物の検出・調査・通知を実行し、右のBotに届きます。前日・直前リマインドは数十秒に圧縮してあります。</p>
+  </header>
+
+  <div class="demo-grid">
+    <div class="demo-left">
+      <section class="demo-panel glass">
+        <h2><span class="n">①</span>メールを受信させる</h2>
+        <div id="samples"></div>
+      </section>
+      <section class="demo-panel glass">
+        <h2><span class="n">②</span>検出された予定</h2>
+        <div id="events"><p class="ev-empty">まだありません。上のメールを受信させてみてください。</p></div>
+        <button class="demo-reset" id="reset">最初からやり直す</button>
+      </section>
+    </div>
+
+    <div class="demo-right">
+      <div class="phone glass-strong">
+        <div class="phone-island" aria-hidden="true"></div>
+        <div class="phone-head">
+          <span class="phone-avatar" aria-hidden="true">◎</span>
+          <span class="phone-name">GooJob<em>bot</em></span>
+        </div>
+        <div class="phone-chat" id="chat"></div>
+        <div class="phone-input" aria-hidden="true"><span>メッセージ</span>
+          <svg viewBox="0 0 20 20"><path d="M3 10 17 3l-3.5 14L9.5 11z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <p class="demo-hint">🔔 前日リマインド ≈ 14秒後　⏰ 直前リマインド ≈ 30秒後</p>
+    </div>
+  </div>
+</main>
+
+<script type="module" src="/assets/js/demo.js"></script>
+</body>
+</html>
