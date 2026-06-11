@@ -158,7 +158,15 @@ export function extractDateTimes(text, { now = Date.now() } = {}) {
       if (h.weak) confidence -= 0.15;      // bare 6/24 with no weekday & no time: likely noise
     }
 
-    const ctx = norm.slice(h.index, Math.min(norm.length, winEnd + 14));
+    // Deadline words live on the same line: before (提出期限：…) or after
+    // (…までに) the date. Never let context bleed across newlines, or a
+    // neighbouring 「ご回答期限」 line would mark ordinary slots as deadlines.
+    const back = norm.slice(Math.max(0, h.index - 12), h.index);
+    const backCtx = back.slice(back.lastIndexOf('\n') + 1);
+    const fwdRaw = norm.slice(h.index, Math.min(norm.length, winEnd + 14));
+    const searchFrom = h.len + (times ? times.index : 0);
+    const nl = fwdRaw.indexOf('\n', searchFrom);
+    const ctx = backCtx + fwdRaw.slice(0, nl === -1 ? fwdRaw.length : nl);
     out.push({
       y, m: mo, d, startsAt, endsAt, hasTime,
       weekday: weekdayOf(y, mo, d),
