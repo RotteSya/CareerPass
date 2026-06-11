@@ -73,6 +73,25 @@ export function registerApi({
     return json(res, 200, { ok: true, host, port });
   });
 
+  // ── waitlist (pre-launch signup, no credentials needed) ─
+  app.post('/api/waitlist', async (req, res) => {
+    const body = await readJson(req);
+    const email = String(body.email || '').trim().toLowerCase();
+    if (!EMAIL_RE.test(email)) return json(res, 400, { error: 'invalid_email' });
+    const existing = db.waitlistByEmail(email);
+    const row = db.joinWaitlist(
+      {
+        email,
+        gradYear: Number(body.gradYear) || null,
+        ref: body.ref ? String(body.ref).trim().toUpperCase() : null,
+      },
+      Date.now(),
+    );
+    const pos = db.waitlistPosition(row.id);
+    log(`waitlist ${existing ? 'rejoin' : 'join'} ${email} → #${pos.position}/${pos.total}`);
+    return json(res, 200, { ok: true, alreadyJoined: !!existing, refCode: row.ref_code, ...pos });
+  });
+
   // ── line webhook (needs public URL; verified) ──────────
   if (lineChannel) {
     app.post('/webhooks/line', async (req, res) => {

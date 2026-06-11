@@ -1,5 +1,6 @@
 import { initPhone } from './phone.js';
 import { initForm } from './form.js';
+import { initWatchlist } from './watchlist.js';
 
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -111,3 +112,4 @@ for (const qa of document.querySelectorAll('.qa')) {
 
 initPhone();
 initForm();
+initWatchlist();

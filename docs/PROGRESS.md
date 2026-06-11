@@ -16,5 +16,9 @@
 - [x] M7 前端：落地页（hero/嘈杂→安静/しくみ/できること/注册流/FAQ/页脚）+ /demo 演练场
       —— 预览截图逐区自验（含移动端、表单全流程、SSE 实时通知、压缩提醒到达）
 - [x] M8 收尾：README、DESIGN、最终全量测试与提交
+- [x] M9 落地页「はじめる」→「ウェイトリスト」：单屏注册 + 实时排队号（count-up）、
+      真实邀请链接与 referral 加权排序（邀请好友顺位上升）、X/LINE 分享 —— waitlist 5 测试
+      （实机修复：headless 下 rAF 节流导致号码停在 0000 → 加 setTimeout 兜底落定终值）
 
-最终状态：41 tests green；演示模式零凭证可完整体验；真实模式需 .env。
+最终状态：46 tests green；演示模式零凭证可完整体验；真实模式需 .env。
+落地页主转化为 waitlist（/api/waitlist，referral-aware）；register/imap 后端保留供 Bot 上线时连携。

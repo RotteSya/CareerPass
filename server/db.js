@@ -65,6 +65,14 @@ CREATE TABLE IF NOT EXISTS seen_mail (
   processed_at INTEGER NOT NULL,
   PRIMARY KEY (user_id, message_id)
 );
+CREATE TABLE IF NOT EXISTS waitlist (
+  id           INTEGER PRIMARY KEY AUTOINCREMENT,
+  email        TEXT NOT NULL UNIQUE,
+  grad_year    INTEGER,
+  ref_code     TEXT NOT NULL UNIQUE,
+  referred_by  TEXT,
+  created_at   INTEGER NOT NULL
+);
 `;
 
 const newCode = () => {
@@ -211,6 +219,43 @@ export function openDb(path) {
     markSeen: (userId, messageId, intent, now = Date.now()) =>
       run('INSERT OR IGNORE INTO seen_mail (user_id, message_id, intent, processed_at) VALUES (?, ?, ?, ?)',
         userId, messageId, intent, now),
+
+    // ── waitlist (pre-launch signup, referral-aware) ──────
+    joinWaitlist({ email, gradYear = null, ref = null }, now = Date.now()) {
+      const existing = get('SELECT * FROM waitlist WHERE email = ?', email);
+      if (existing) return existing;
+      let code = newCode();
+      while (get('SELECT 1 AS x FROM waitlist WHERE ref_code = ?', code)) code = newCode();
+      // honor a referral only if the code exists (and isn't this brand-new one)
+      const referrer = ref ? get('SELECT ref_code FROM waitlist WHERE ref_code = ?', ref) : null;
+      const r = run(
+        'INSERT INTO waitlist (email, grad_year, ref_code, referred_by, created_at) VALUES (?, ?, ?, ?, ?)',
+        email, gradYear, code, referrer?.ref_code ?? null, now,
+      );
+      return get('SELECT * FROM waitlist WHERE id = ?', r.lastInsertRowid);
+    },
+    waitlistByEmail: (email) => get('SELECT * FROM waitlist WHERE email = ?', email),
+    waitlistCount: () => get('SELECT COUNT(*) AS n FROM waitlist').n,
+    /**
+     * Live queue position. Rank = (referrals desc, joined asc), so inviting
+     * friends genuinely moves you up. Computed in JS — fine at waitlist scale.
+     */
+    waitlistPosition(id) {
+      const rows = all('SELECT id, created_at, ref_code, referred_by FROM waitlist');
+      const refs = new Map();
+      for (const r of rows) if (r.referred_by) refs.set(r.referred_by, (refs.get(r.referred_by) || 0) + 1);
+      const score = (r) => refs.get(r.ref_code) || 0;
+      const me = rows.find((r) => r.id === id);
+      if (!me) return { position: rows.length, total: rows.length, referrals: 0 };
+      const sm = score(me);
+      let ahead = 0;
+      for (const r of rows) {
+        if (r.id === me.id) continue;
+        const sr = score(r);
+        if (sr > sm || (sr === sm && r.created_at < me.created_at)) ahead++;
+      }
+      return { position: ahead + 1, total: rows.length, referrals: sm };
+    },
 
     /** Demo reset: drop everything derived for one user, keep the account. */
     wipeUser(userId) {

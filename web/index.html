@@ -31,9 +31,10 @@
   <nav class="nav-links" aria-label="ページ内">
     <a href="#how">しくみ</a>
     <a href="#features">できること</a>
+    <a href="#wishlist">プレビュー</a>
     <a href="#faq">よくある質問</a>
   </nav>
-  <a class="btn btn-ink btn-s" href="#register">はじめる</a>
+  <a class="btn btn-ink btn-s" href="#join">ウェイトリスト</a>
 </header>
 
 <main id="top">
@@ -54,7 +55,7 @@
         ちょうどいいときに、そっと知らせます。
       </p>
       <div class="hero-cta reveal">
-        <a href="#register" class="btn btn-ink magnetic">無料ではじめる</a>
+        <a href="#join" class="btn btn-ink magnetic">ウェイトリストに登録</a>
         <a href="#how" class="btn btn-ghost magnetic">しくみを見る
           <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -156,87 +157,134 @@
     </div>
   </section>
 
-  <!-- ━━ register ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-  <section class="register" id="register">
-    <div class="reg-card glass-strong reveal">
-      <div class="reg-progress" aria-hidden="true"><i id="regBar"></i></div>
+  <!-- ━━ wishlist ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="wishlist" id="wishlist">
+    <header class="sec-head reveal">
+      <p class="sec-no">ウィッシュリスト</p>
+      <h2>あなたの<em class="serif-i">行きたい</em>を、リストに。</h2>
+      <p class="sec-sub">気になる企業を、ウィッシュリストに入れておくだけ。<br>説明会も、締切も、選考の動きも——GooJob が見守って、ちょうどいいときにそっと知らせます。</p>
+    </header>
 
-      <!-- step 1: email -->
-      <form class="reg-step is-active" data-step="1" id="regForm1" novalidate>
-        <p class="reg-no">1 / 3</p>
-        <h2 class="reg-h">1分で、<em class="serif-i">しずか</em>になる。</h2>
-        <label class="field">
-          <span class="field-label">就活で使っているメールアドレス</span>
-          <input type="email" id="regEmail" name="email" inputmode="email" autocomplete="email" placeholder="taro@example.com" required>
-          <i class="field-line" aria-hidden="true"></i>
-        </label>
-        <p class="field-err" id="regEmailErr" role="alert"></p>
-        <div class="reg-actions">
-          <button class="btn btn-ink magnetic" type="submit">次へ</button>
-        </div>
-      </form>
+    <div class="wl-filters reveal" role="tablist" aria-label="絞り込み">
+      <button class="wl-tab is-on" role="tab" data-filter="all">すべて<span></span></button>
+      <button class="wl-tab" role="tab" data-filter="説明会">説明会<span></span></button>
+      <button class="wl-tab" role="tab" data-filter="面接">面接<span></span></button>
+      <button class="wl-tab" role="tab" data-filter="締切">締切<span></span></button>
+    </div>
 
-      <!-- step 2: grad year -->
-      <div class="reg-step" data-step="2">
-        <p class="reg-no">2 / 3</p>
-        <h2 class="reg-h">卒業予定は？</h2>
-        <div class="pills" role="group" aria-label="卒業年度">
-          <button class="pill" data-year="2027">2027年卒</button>
-          <button class="pill" data-year="2028">2028年卒</button>
-          <button class="pill" data-year="2029">2029年卒〜</button>
-        </div>
-        <div class="reg-actions">
-          <button class="btn btn-ghost" data-back>もどる</button>
-        </div>
+    <div class="wl-board" id="wlBoard">
+      <article class="wl-card glass" data-type="説明会">
+        <header class="wl-card-top">
+          <span class="wl-logo" aria-hidden="true">ソ</span>
+          <span class="wl-id"><b>株式会社ソラテック</b><span>soratech.co.jp</span></span>
+          <svg class="wl-star" viewBox="0 0 24 24" aria-label="志望企業"><path d="M12 3.4l2.65 5.37 5.93.86-4.29 4.18 1.01 5.9L12 17.9l-5.3 2.79 1.01-5.9-4.29-4.18 5.93-.86z"/></svg>
+        </header>
+        <span class="wl-status wl-status--info">説明会 予約済み</span>
+        <p class="wl-next"><time>6/24<i>（水）</i> 14:00</time> 会社説明会（オンライン）</p>
+        <div class="wl-brief"><p>気象×AIのデータ解析企業。先日シリーズCで45億円を調達。</p></div>
+        <footer class="wl-foot"><span class="wl-rem">前日・直前リマインド</span><span class="wl-badge">調査済み</span></footer>
+      </article>
+
+      <article class="wl-card glass" data-type="面接">
+        <header class="wl-card-top">
+          <span class="wl-logo" aria-hidden="true">み</span>
+          <span class="wl-id"><b>株式会社みらいフーズ</b><span>mirai-foods.co.jp</span></span>
+          <svg class="wl-star" viewBox="0 0 24 24" aria-label="志望企業"><path d="M12 3.4l2.65 5.37 5.93.86-4.29 4.18 1.01 5.9L12 17.9l-5.3 2.79 1.01-5.9-4.29-4.18 5.93-.86z"/></svg>
+        </header>
+        <span class="wl-status wl-status--ok">一次面接 確定</span>
+        <p class="wl-next"><time>7/1<i>（水）</i> 10:00</time> 本社7F・スーツ着用</p>
+        <div class="wl-brief"><p>冷凍×植物性食品メーカー。アジア3カ国へ輸出を拡大中。</p></div>
+        <footer class="wl-foot"><span class="wl-rem">持ち物・地図つき通知</span><span class="wl-badge">調査済み</span></footer>
+      </article>
+
+      <article class="wl-card glass" data-type="面接">
+        <header class="wl-card-top">
+          <span class="wl-logo" aria-hidden="true">ノ</span>
+          <span class="wl-id"><b>株式会社ノースリバー</b><span>northriver.jp</span></span>
+          <svg class="wl-star" viewBox="0 0 24 24" aria-label="志望企業"><path d="M12 3.4l2.65 5.37 5.93.86-4.29 4.18 1.01 5.9L12 17.9l-5.3 2.79 1.01-5.9-4.29-4.18 5.93-.86z"/></svg>
+        </header>
+        <span class="wl-status wl-status--wait">二次面接 日程調整中</span>
+        <p class="wl-next"><time>候補3件</time> 回答期限 6/20<i>（土）</i></p>
+        <div class="wl-brief"><p>物流DXのITコンサル。みなとみらいに新オフィスを開設。</p></div>
+        <footer class="wl-foot"><span class="wl-rem">期限が近づくと通知</span><span class="wl-badge">調査済み</span></footer>
+      </article>
+
+      <article class="wl-card glass" data-type="締切">
+        <header class="wl-card-top">
+          <span class="wl-logo" aria-hidden="true">ホ</span>
+          <span class="wl-id"><b>株式会社ホシノ精機</b><span>hoshino-seiki.co.jp</span></span>
+          <svg class="wl-star" viewBox="0 0 24 24" aria-label="志望企業"><path d="M12 3.4l2.65 5.37 5.93.86-4.29 4.18 1.01 5.9L12 17.9l-5.3 2.79 1.01-5.9-4.29-4.18 5.93-.86z"/></svg>
+        </header>
+        <span class="wl-status wl-status--warn">ES提出 締切</span>
+        <p class="wl-next"><time>6/25<i>（水）</i> 23:59</time> まで・マイナビ経由</p>
+        <div class="wl-brief"><p>医療・半導体向けの精密部品メーカー。長野に新工場を着工。</p></div>
+        <footer class="wl-foot"><span class="wl-rem">締切前にリマインド</span><span class="wl-badge">調査済み</span></footer>
+      </article>
+    </div>
+
+    <div class="wl-cta reveal">
+      <a class="btn btn-ink magnetic" href="#join">ウェイトリストに参加する</a>
+    </div>
+  </section>
+
+  <!-- ━━ waitlist ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+  <section class="join" id="join">
+    <div class="join-card glass-strong reveal">
+      <span class="join-glow" aria-hidden="true"></span>
+
+      <!-- form state -->
+      <div class="join-pane is-active" data-pane="form">
+        <p class="join-eyebrow">waitlist <span class="dot">·</span> 先行ご招待</p>
+        <h2 class="join-h">いちばん静かな就活を、<em class="serif-i">先に</em>。</h2>
+        <p class="join-sub">27卒・28卒の方へ、順番にご招待しています。<br>いまのうちに、お席だけお取りします。</p>
+
+        <form id="joinForm" novalidate>
+          <label class="field">
+            <span class="field-label">メールアドレス</span>
+            <input type="email" id="joinEmail" name="email" inputmode="email" autocomplete="email" placeholder="taro@example.com" required>
+            <i class="field-line" aria-hidden="true"></i>
+          </label>
+
+          <div class="join-years">
+            <span class="join-years-label">卒業予定 <em>任意</em></span>
+            <div class="years" role="group" aria-label="卒業予定（任意）">
+              <button type="button" class="yr" data-year="2027">27卒</button>
+              <button type="button" class="yr" data-year="2028">28卒</button>
+              <button type="button" class="yr" data-year="2029">29卒〜</button>
+            </div>
+          </div>
+
+          <p class="field-err" id="joinErr" role="alert"></p>
+          <button class="btn btn-ink magnetic join-submit" type="submit">
+            <span>ウェイトリストに登録</span>
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <p class="join-fine">メールは読み取り専用。登録はいつでも解除できます。</p>
+        </form>
       </div>
 
-      <!-- step 3: channel -->
-      <div class="reg-step" data-step="3">
-        <p class="reg-no">3 / 3</p>
-        <h2 class="reg-h">通知は、どこに？</h2>
-        <div class="channels">
-          <button class="channel glass" data-channel="telegram">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4 2.8 11.2c-.9.35-.85 1.3.07 1.58l4.63 1.44 1.8 5.5c.27.8 1.05.92 1.6.28l2.4-2.62 4.7 3.45c.7.5 1.5.14 1.7-.74L22.9 5.3c.23-1-.7-1.7-1.9-1.3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m7.5 14.2 9.4-7.4-7.2 8.1-.3 3.2" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" opacity=".55"/></svg>
-            <b>Telegram</b>
-            <span>いますぐ連携できる<br>おすすめ</span>
-          </button>
-          <button class="channel glass" data-channel="line">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c5.25 0 9.5 3.4 9.5 7.6 0 4.2-4.25 7.6-9.5 7.6-.6 0-1.2-.05-1.77-.13-1.5 1.05-3.34 1.84-4.13 1.93.6-1.05.74-1.93.7-2.6C4.06 16.6 2.5 14.06 2.5 11.1c0-4.2 4.25-7.6 9.5-7.6Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M7.2 9.4v4.2M9.9 13.6V9.4l3 4.2V9.4M16.8 9.4v4.2m-1.9-4.2h0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none" opacity=".55"/></svg>
-            <b>LINE</b>
-            <span>招待制プレビュー<br>準備中</span>
-          </button>
-        </div>
-        <p class="field-err" id="regSubmitErr" role="alert"></p>
-        <div class="reg-actions">
-          <button class="btn btn-ghost" data-back>もどる</button>
-        </div>
-      </div>
+      <!-- confirmed state -->
+      <div class="join-pane" data-pane="done" aria-hidden="true">
+        <span class="join-check" aria-hidden="true">
+          <svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="16" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".25"/><path d="M11 18.5l4.5 4.5L25 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <p class="join-eyebrow" id="joinRankLabel">現在の順番</p>
+        <p class="join-number"><i>#</i><span id="joinNum">0000</span></p>
+        <h2 class="join-h" id="joinHeadline">お席を、お取りしました。</h2>
+        <p class="join-sub" id="joinLead">準備ができ次第、メールでそっとご案内します。</p>
 
-      <!-- step 4: done -->
-      <div class="reg-step reg-done" data-step="4">
-        <p class="reg-no done-mark" aria-hidden="true">◎</p>
-        <h2 class="reg-h">あとは、<em class="serif-i">Bot</em> におまかせ。</h2>
-        <p class="done-lead" id="doneLead">Telegramでこのコードを送ると、連携が完了します。</p>
-        <div class="code-chip glass" id="codeChip" role="group" aria-label="連携コード">
-          <span class="code" id="linkCode">------</span>
-          <button class="copy" id="copyBtn" aria-label="コピー">
+        <div class="invite glass">
+          <span class="invite-label">招待リンク</span>
+          <span class="invite-url" id="inviteUrl">—</span>
+          <button class="copy" id="inviteCopy" aria-label="リンクをコピー">
             <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="7" y="7" width="9.5" height="9.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M13 7V5.5A2.5 2.5 0 0 0 10.5 3h-5A2.5 2.5 0 0 0 3 5.5v5A2.5 2.5 0 0 0 5.5 13H7" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
           </button>
         </div>
-        <div class="reg-actions done-actions">
-          <a class="btn btn-ink magnetic" id="botLink" href="#" target="_blank" rel="noopener">Telegramで開く</a>
+        <p class="join-bump">友だちが登録するたび、あなたの順番が上がります。</p>
+        <div class="join-share">
+          <a class="share" id="shareX" target="_blank" rel="noopener">Xでシェア</a>
+          <a class="share" id="shareLine" target="_blank" rel="noopener">LINEで送る</a>
         </div>
-        <details class="imap-later">
-          <summary>メール連携も今すませる（任意）</summary>
-          <form id="imapForm" novalidate>
-            <p class="imap-hint">Gmailは2段階認証を有効にして「アプリパスワード」を発行してください。読み取り専用・暗号化保存です。</p>
-            <label class="field"><span class="field-label">アプリパスワード</span>
-              <input type="password" id="imapPass" autocomplete="off" placeholder="xxxx xxxx xxxx xxxx">
-              <i class="field-line"></i>
-            </label>
-            <div class="reg-actions"><button class="btn btn-ink btn-s" type="submit">保存する</button><span class="imap-ok" id="imapOk"></span></div>
-          </form>
-        </details>
       </div>
     </div>
   </section>
@@ -248,6 +296,10 @@
       <h2>気になることは、<em class="serif-i">先に</em>。</h2>
     </header>
     <div class="qa-list reveal">
+      <details class="qa">
+        <summary>いつから使えますか？<i></i></summary>
+        <div class="qa-body"><p>27卒・28卒の方を対象に、順番にご招待しています。ウェイトリストに登録すると、お席を確保したうえで、準備ができ次第メールでご案内します。友だちを招待すると、順番が早くなります。</p></div>
+      </details>
       <details class="qa">
         <summary>メールの中身は安全ですか？<i></i></summary>
         <div class="qa-body"><p>受信トレイを読み取り専用で確認し、就活に関係するメールだけを解析します。認証情報は暗号化して保存し、解除すればすぐに削除されます。メールの転送や送信は一切行いません。</p></div>
