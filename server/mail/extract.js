@@ -149,6 +149,7 @@ export function understand(mail, { now = Date.now() } = {}) {
     intent, score, type, label, company,
     chosen, candidates, deadline,
     location: extractLocation(textN),
+    address: lineValue(textN, /^[ \t>*・]{0,4}[【\[]?(?:住所|所在地|会場住所)[】\]]?[:：]?\s*(.+)$/m),
     url: extractUrl(textN),
     items: lineValue(textN, /^[ \t>*・]{0,4}[【\[]?(?:持ち物|ご持参いただくもの|お持ち物)[】\]]?[:：]?\s*(.+)$/m),
     dress: lineValue(textN, /^[ \t>*・]{0,4}[【\[]?(?:服装|ドレスコード)[】\]]?[:：]?\s*(.+)$/m),

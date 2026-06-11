@@ -28,5 +28,5 @@ export function fmtRelDay(ms, now = Date.now()) {
 export function fmtWhen(ms, now = Date.now()) {
   const rel = fmtRelDay(ms, now);
   const abs = `${fmtDate(ms)} ${fmtTime(ms)}`;
-  return rel.includes('月') ? abs : `${rel} ${abs}`;
+  return /^(きょう|あす|あさって)$/.test(rel) ? `${rel} ${abs}` : abs;
 }

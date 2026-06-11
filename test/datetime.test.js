@@ -126,4 +126,6 @@ test('formatters render JST japanese', () => {
   assert.equal(fmtRelDay(jst('2026-06-12T10:00'), NOW), 'あす');
   assert.equal(fmtRelDay(jst('2026-06-11T23:00'), NOW), 'きょう');
   assert.match(fmtWhen(jst('2026-06-12T10:00'), NOW), /^あす 6\/12（金） 10:00$/);
+  // far dates must not repeat the date portion
+  assert.equal(fmtWhen(jst('2026-07-01T10:00'), NOW), '7/1（水） 10:00');
 });

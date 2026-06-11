@@ -21,6 +21,93 @@ const hm = (ms) => {
   return `${t.getUTCHours()}:${String(t.getUTCMinutes()).padStart(2, '0')}`;
 };
 
+/** Canned research for demo mode — keeps briefs rich while fully offline. */
+export const DEMO_RESEARCH = {
+  株式会社ソラテック: {
+    name: '株式会社ソラテック',
+    domain: 'soratech.co.jp',
+    wiki: {
+      title: 'ソラテック',
+      extract: '株式会社ソラテックは、東京都渋谷区に本社を置く気象データ解析企業。衛星データとAIを用いた予測サービス「ソラミル」を提供する。2015年設立、従業員約230名。',
+      url: null,
+    },
+    news: [
+      { title: 'ソラテック、衛星データ解析の新サービスを発表 - 日本経済新聞' },
+      { title: 'ソラテック、シリーズCで45億円を調達' },
+      { title: '気象データで物流を変える — ソラテックの挑戦' },
+    ],
+    site: { title: '株式会社ソラテック | 気象データで、未来の判断を。', description: '気象×AIで意思決定を支えるデータカンパニー' },
+    brief: {
+      overview: '気象×AIのデータ解析企業。設立2015年・約230名、渋谷本社。',
+      business: '衛星・観測データをAIで解析し、物流や小売向けに需要予測・リスク予測SaaS「ソラミル」を提供。',
+      recent: 'シリーズCで45億円調達、衛星データ解析の新サービスを発表するなど拡大期。',
+      likely_questions: ['なぜ気象データに興味を持ったか', 'データを使って何かを判断・改善した経験', 'チームでの開発・分析経験'],
+      reverse_questions: ['新サービスで一番難しかった技術課題は何ですか', '入社1年目のデータ職はどんな業務から始めますか'],
+    },
+    llmUsed: false,
+    sources: ['https://www.soratech.co.jp/'],
+  },
+  株式会社みらいフーズ: {
+    name: '株式会社みらいフーズ',
+    domain: 'mirai-foods.co.jp',
+    wiki: {
+      title: 'みらいフーズ',
+      extract: '株式会社みらいフーズは、東京都渋谷区に本社を置く食品メーカー。冷凍食品と植物性代替食品の開発・製造を行う。1987年設立、従業員約1,800名。',
+      url: null,
+    },
+    news: [
+      { title: 'みらいフーズ、植物性ミールの新ライン稼働 - 食品新聞' },
+      { title: 'みらいフーズ、アジア3カ国へ輸出拡大' },
+    ],
+    site: { title: '株式会社みらいフーズ', description: 'たべるの未来を、まじめにつくる。' },
+    brief: {
+      overview: '冷凍食品と植物性食品の中堅メーカー。1987年設立・約1,800名。',
+      business: '冷凍食品の製造販売に加え、植物性代替食品ブランド「みらいテーブル」を展開。海外輸出も拡大中。',
+      recent: '植物性ミール新ライン稼働、アジア3カ国への輸出拡大など攻めの投資が続く。',
+      likely_questions: ['食に関わる仕事を選ぶ理由', '商品を一つ選んで改善提案をしてください', '挑戦して失敗した経験'],
+      reverse_questions: ['植物性食品事業で新卒が任される領域はどこですか', '商品企画と営業のキャリアはどう交わりますか'],
+    },
+    llmUsed: false,
+    sources: ['https://www.mirai-foods.co.jp/'],
+  },
+  株式会社ノースリバー: {
+    name: '株式会社ノースリバー',
+    domain: 'northriver.jp',
+    wiki: null,
+    news: [{ title: 'ノースリバー、横浜に新オフィス開設' }],
+    site: { title: '株式会社ノースリバー | 物流DXのパートナー', description: '物流業界のデジタル化を支援するITコンサルティング会社' },
+    brief: {
+      overview: '物流DXに特化したITコンサル。みなとみらい本社。',
+      business: '物流企業向けに業務システム導入・データ分析・DX伴走支援を提供。',
+      recent: '横浜・みなとみらいに新オフィスを開設し採用を拡大中。',
+      likely_questions: ['コンサルタントに必要な素質は何だと思うか', '困難な調整をやり切った経験'],
+      reverse_questions: ['新卒が最初に入るプロジェクトの規模感を教えてください', '物流の現場に出る機会はどのくらいありますか'],
+    },
+    llmUsed: false,
+    sources: ['https://www.northriver.jp/'],
+  },
+  株式会社ホシノ精機: {
+    name: '株式会社ホシノ精機',
+    domain: 'hoshino-seiki.co.jp',
+    wiki: {
+      title: 'ホシノ精機',
+      extract: '株式会社ホシノ精機は、長野県に本社を置く精密機器メーカー。医療機器・半導体製造装置向けの精密部品を製造する。1962年設立。',
+      url: null,
+    },
+    news: [{ title: 'ホシノ精機、医療機器部品の新工場を着工' }],
+    site: { title: '株式会社ホシノ精機', description: 'ミクロンの精度で、医療と産業を支える。' },
+    brief: {
+      overview: '医療・半導体向け精密部品の老舗メーカー。1962年設立、長野本社。',
+      business: '医療機器や半導体製造装置に使われる精密部品の設計・製造。高精度加工が強み。',
+      recent: '医療機器部品の新工場を着工、生産能力を増強中。',
+      likely_questions: ['ものづくりに興味を持ったきっかけ', '地道な作業を続けた経験'],
+      reverse_questions: ['若手技術者の育成はどのように行われていますか'],
+    },
+    llmUsed: false,
+    sources: ['https://www.hoshino-seiki.co.jp/'],
+  },
+};
+
 export function buildSamples(now = Date.now()) {
   const seminarAt = at(now, 13, 14);
   const seminarEnd = at(now, 13, 15, 30);

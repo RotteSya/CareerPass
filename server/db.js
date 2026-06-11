@@ -40,6 +40,9 @@ CREATE TABLE IF NOT EXISTS events (
   ends_at      INTEGER,
   location     TEXT,
   url          TEXT,
+  items        TEXT,
+  dress        TEXT,
+  address      TEXT,
   status       TEXT NOT NULL DEFAULT 'scheduled',
   source       TEXT,
   raw_excerpt  TEXT,
@@ -145,10 +148,11 @@ export function openDb(path) {
       if (found) return { event: found, created: false };
       const r = run(
         `INSERT INTO events (user_id, company_id, type, title, starts_at, ends_at,
-           location, url, source, raw_excerpt, created_at, updated_at)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+           location, url, items, dress, address, source, raw_excerpt, created_at, updated_at)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         userId, ev.companyId ?? null, ev.type, ev.title, ev.startsAt, ev.endsAt ?? null,
-        ev.location ?? null, ev.url ?? null, ev.source ?? null, ev.rawExcerpt ?? null, now, now,
+        ev.location ?? null, ev.url ?? null, ev.items ?? null, ev.dress ?? null,
+        ev.address ?? null, ev.source ?? null, ev.rawExcerpt ?? null, now, now,
       );
       return { event: get('SELECT * FROM events WHERE id = ?', r.lastInsertRowid), created: true };
     },
@@ -194,6 +198,12 @@ export function openDb(path) {
       ),
     markReminderSent: (id, now = Date.now()) =>
       run('UPDATE reminders SET sent_at = ? WHERE id = ? AND sent_at IS NULL', now, id),
+    reminderById: (id) =>
+      get(
+        `SELECT r.*, e.user_id, e.status AS event_status FROM reminders r
+         JOIN events e ON e.id = r.event_id WHERE r.id = ?`,
+        id,
+      ),
 
     // ── seen mail (idempotency) ────────────────────────────
     isSeen: (userId, messageId) =>
@@ -201,6 +211,14 @@ export function openDb(path) {
     markSeen: (userId, messageId, intent, now = Date.now()) =>
       run('INSERT OR IGNORE INTO seen_mail (user_id, message_id, intent, processed_at) VALUES (?, ?, ?, ?)',
         userId, messageId, intent, now),
+
+    /** Demo reset: drop everything derived for one user, keep the account. */
+    wipeUser(userId) {
+      run('DELETE FROM reminders WHERE event_id IN (SELECT id FROM events WHERE user_id = ?)', userId);
+      run('DELETE FROM events WHERE user_id = ?', userId);
+      run('DELETE FROM companies WHERE user_id = ?', userId);
+      run('DELETE FROM seen_mail WHERE user_id = ?', userId);
+    },
 
     close: () => db.close(),
   };
