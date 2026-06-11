@@ -31,7 +31,6 @@
   <nav class="nav-links" aria-label="ページ内">
     <a href="#how">しくみ</a>
     <a href="#features">できること</a>
-    <a href="#wishlist">プレビュー</a>
     <a href="#faq">よくある質問</a>
   </nav>
   <a class="btn btn-ink btn-s" href="#join">ウェイトリスト</a>
@@ -154,76 +153,6 @@
       <article class="feat glass reveal"><h3>持ち物・服装つき</h3><p>履歴書、スーツ指定、会場の地図リンクまで通知に同梱。</p></article>
       <article class="feat glass reveal"><h3>ナビサイト経由もOK</h3><p>マイナビ・リクナビなどからのメールも、企業名で正しく整理。</p></article>
       <article class="feat glass reveal"><h3>読み取り専用</h3><p>メールは読むだけ。認証情報は暗号化保存、ワンタップで解除。</p></article>
-    </div>
-  </section>
-
-  <!-- ━━ wishlist ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
-  <section class="wishlist" id="wishlist">
-    <header class="sec-head reveal">
-      <p class="sec-no">ウィッシュリスト</p>
-      <h2>あなたの<em class="serif-i">行きたい</em>を、リストに。</h2>
-      <p class="sec-sub">気になる企業を、ウィッシュリストに入れておくだけ。<br>説明会も、締切も、選考の動きも——GooJob が見守って、ちょうどいいときにそっと知らせます。</p>
-    </header>
-
-    <div class="wl-filters reveal" role="tablist" aria-label="絞り込み">
-      <button class="wl-tab is-on" role="tab" data-filter="all">すべて<span></span></button>
-      <button class="wl-tab" role="tab" data-filter="説明会">説明会<span></span></button>
-      <button class="wl-tab" role="tab" data-filter="面接">面接<span></span></button>
-      <button class="wl-tab" role="tab" data-filter="締切">締切<span></span></button>
-    </div>
-
-    <div class="wl-board" id="wlBoard">
-      <article class="wl-card glass" data-type="説明会">
-        <header class="wl-card-top">
-          <span class="wl-logo" aria-hidden="true">ソ</span>
-          <span class="wl-id"><b>株式会社ソラテック</b><span>soratech.co.jp</span></span>
-          <svg class="wl-star" viewBox="0 0 24 24" aria-label="志望企業"><path d="M12 3.4l2.65 5.37 5.93.86-4.29 4.18 1.01 5.9L12 17.9l-5.3 2.79 1.01-5.9-4.29-4.18 5.93-.86z"/></svg>
-        </header>
-        <span class="wl-status wl-status--info">説明会 予約済み</span>
-        <p class="wl-next"><time>6/24<i>（水）</i> 14:00</time> 会社説明会（オンライン）</p>
-        <div class="wl-brief"><p>気象×AIのデータ解析企業。先日シリーズCで45億円を調達。</p></div>
-        <footer class="wl-foot"><span class="wl-rem">前日・直前リマインド</span><span class="wl-badge">調査済み</span></footer>
-      </article>
-
-      <article class="wl-card glass" data-type="面接">
-        <header class="wl-card-top">
-          <span class="wl-logo" aria-hidden="true">み</span>
-          <span class="wl-id"><b>株式会社みらいフーズ</b><span>mirai-foods.co.jp</span></span>
-          <svg class="wl-star" viewBox="0 0 24 24" aria-label="志望企業"><path d="M12 3.4l2.65 5.37 5.93.86-4.29 4.18 1.01 5.9L12 17.9l-5.3 2.79 1.01-5.9-4.29-4.18 5.93-.86z"/></svg>
-        </header>
-        <span class="wl-status wl-status--ok">一次面接 確定</span>
-        <p class="wl-next"><time>7/1<i>（水）</i> 10:00</time> 本社7F・スーツ着用</p>
-        <div class="wl-brief"><p>冷凍×植物性食品メーカー。アジア3カ国へ輸出を拡大中。</p></div>
-        <footer class="wl-foot"><span class="wl-rem">持ち物・地図つき通知</span><span class="wl-badge">調査済み</span></footer>
-      </article>
-
-      <article class="wl-card glass" data-type="面接">
-        <header class="wl-card-top">
-          <span class="wl-logo" aria-hidden="true">ノ</span>
-          <span class="wl-id"><b>株式会社ノースリバー</b><span>northriver.jp</span></span>
-          <svg class="wl-star" viewBox="0 0 24 24" aria-label="志望企業"><path d="M12 3.4l2.65 5.37 5.93.86-4.29 4.18 1.01 5.9L12 17.9l-5.3 2.79 1.01-5.9-4.29-4.18 5.93-.86z"/></svg>
-        </header>
-        <span class="wl-status wl-status--wait">二次面接 日程調整中</span>
-        <p class="wl-next"><time>候補3件</time> 回答期限 6/20<i>（土）</i></p>
-        <div class="wl-brief"><p>物流DXのITコンサル。みなとみらいに新オフィスを開設。</p></div>
-        <footer class="wl-foot"><span class="wl-rem">期限が近づくと通知</span><span class="wl-badge">調査済み</span></footer>
-      </article>
-
-      <article class="wl-card glass" data-type="締切">
-        <header class="wl-card-top">
-          <span class="wl-logo" aria-hidden="true">ホ</span>
-          <span class="wl-id"><b>株式会社ホシノ精機</b><span>hoshino-seiki.co.jp</span></span>
-          <svg class="wl-star" viewBox="0 0 24 24" aria-label="志望企業"><path d="M12 3.4l2.65 5.37 5.93.86-4.29 4.18 1.01 5.9L12 17.9l-5.3 2.79 1.01-5.9-4.29-4.18 5.93-.86z"/></svg>
-        </header>
-        <span class="wl-status wl-status--warn">ES提出 締切</span>
-        <p class="wl-next"><time>6/25<i>（水）</i> 23:59</time> まで・マイナビ経由</p>
-        <div class="wl-brief"><p>医療・半導体向けの精密部品メーカー。長野に新工場を着工。</p></div>
-        <footer class="wl-foot"><span class="wl-rem">締切前にリマインド</span><span class="wl-badge">調査済み</span></footer>
-      </article>
-    </div>
-
-    <div class="wl-cta reveal">
-      <a class="btn btn-ink magnetic" href="#join">ウェイトリストに参加する</a>
     </div>
   </section>
 
