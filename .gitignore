@@ -117,3 +117,4 @@ testmail/*.eml
 testcsv/
 *.eml
 *.csv
+.project-config.json
