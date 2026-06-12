@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(git --version)",
+      "Bash(git config *)",
+      "Bash(node -e \"const s=require\\('node:sqlite'\\); console.log\\('node:sqlite OK', typeof s.DatabaseSync\\)\")"
+    ]
+  }
+}
